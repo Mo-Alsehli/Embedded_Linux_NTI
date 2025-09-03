@@ -1,0 +1,32 @@
+Password Manager 
+
+This project involves writing a Bash script that allows the user to securely store and retrieve passwords from the terminal. 
+Passwords should be stored in an encrypted text file (pass.db.gpg) using a master password for encryption, 
+so they persist securely between script runs. Use tools like gpg for encryption/decryption to ensure security. 
+
+Requirements:
+- Add entry: ./pass.sh add "website" "username" "password" → Adds a new password entry, prompting for a master password to encrypt the file.
+- View entries: ./pass.sh list → Displays a list of stored websites and usernames (without revealing passwords), after decrypting with master password.
+- Retrieve password: ./pass.sh get "website" → Retrieves and displays the username and password for the specified website, after decrypting.
+- Delete entry: ./pass.sh del "website" → Removes the entry for the specified website, re-encrypting the file afterward.
+- Persistence: Store entries in an encrypted file (e.g., using gpg symmetric encryption with a master password).
+- Error handling: Handle non-existing entries, invalid master passwords, and empty database gracefully (e.g., prompt for master password retries). 
+
+What You'll Practice:
+- File handling in Bash (read/write to encrypted files).
+- Arguments & case statements.
+- Arrays & loops for managing entries.
+- Basic string manipulation and parsing.
+- Encryption/decryption using external tools like gpg.
+- Error handling and secure input (e.g., using read -s for passwords). 
+
+Example Usage:
+./pass.sh add "example.com" "user123" "secretpass"  
+./pass.sh add "bank.com" "account456" "strongpass123"  
+./pass.sh list  
+./pass.sh get "example.com"  
+./pass.sh del "bank.com" 
+
+Example pass.db content (decrypted view):
+website:example.com | username:user123 | password:secretpass
+website:bank.com | username:account456 | password:strongpass123
