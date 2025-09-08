@@ -1,0 +1,117 @@
+﻿Open Source Licenses – Types
+    • Copyleft:
+        ◦ anyone creating derived versions has to agree they will license the new version the same way as the original.
+        ◦ If you took this code and modified it you have to make this modification as open source.
+        ◦ Examples: GPL, LGBL.
+    • Permissive:
+        ◦ Anyone can take the code and modify it and make it closed source.
+
+Linux itself isn’t an operating system and also GNU isn’t an operating system but combining them together makes the operating system.
+
+What makes freeRTOS an operating system but linux not is that FreeRTOS gives you APIs to create tasks and handle scheduler.
+    • A Major difference between FreeRtos and Linux kernel is how to interface with its APIs.
+    • In FreeRTOS creating tasks happens in pre-compilation but in Linux you can create tasks During Runtime.
+
+Linus Travold made a Linux Kernel and Richard Stallman made the GNU Project and those parts combines to make the Linux operating system.
+
+Linux Distributions:
+    • Not all distributions are using same kernel versions.
+    • Package Manager (Apps Store [apt, yum]).
+    • Init Process.
+        ◦ The First process to run after Linux boot up.
+        ◦ An example of it is the systemd.
+        ◦ The systemd:
+            ▪ configure.
+            ▪ System boot faster.
+            ▪ Control new running process.
+            ▪ Inherit orhpan process.
+    • Library used.
+    • Board Support Package.
+        ◦ Kernel.
+        ◦ Bootloader.
+
+Linux Componenet:
+    • User Space:
+        ◦ It can’t access HW directly.
+        ◦ So it uses some kind of API that is called systemCall to the kernel.
+    • Kernel Space:
+        ◦ It’s the core part in the operating system.
+        ◦ It scheduler all the process.
+        ◦ It provides the Interface for the user space which are system calls.
+          
+Difference Between Shell, Terminal, Console:
+    • Shell
+        ◦ It’s generic concept the has some kinds under it like bash, kbash, sh …etc.
+        ◦ Shell exists in the user-space and it’s a user application.
+        ◦ 
+    • Console
+        ◦ It’s some sort of screen or something in the background that the Terminal is outputting on it.
+    • Terminal
+        ◦ It’s a device driver that is implemented in the kernel and of type Character Device.
+        ◦ Terminal has a device driver in the kernel space and it has a buffer that is allocated to it.
+        ◦ So the terminal is the very low level that takes the input from the user format it and give it to the shell.
+        ◦ The Terminal also takes an input from the kernel and this input is the output of an application or an executed task.
+        ◦ There are two types of terminals TTY, PTY.
+
+    • Root User:
+        ◦ Admin User of the current running distribution.
+        ◦ The root user is a user created by the Linux Kernel.
+        ◦ The PC might have multiple distributions.
+        ◦ Has Full access on the Device.
+        ◦ Don’t use Root User while working in your image as it won’t warn you if there is conflict or something.
+
+Linux System Structure:
+    • Root File System:
+        ◦ There is a difference between Root User and Root File System.
+        ◦ File system is a software and it represents the partitions of the system
+        ◦ The root file system is much different between Linux & Windows.
+        ◦ There is only one Root in Linux and all partitions are located under it.
+
+    • Root File System Hierarchy:
+        ◦ /home:
+            ▪ user-1
+                • Some directories.
+            ▪ user-2
+        ◦ /usr:
+            ▪ include
+                • Includes that will be used by the user to access libraries.
+            ▪ Lib
+                • glibc
+            ▪ bin
+                • Binaries for the applications and tools
+            ▪ sbin
+                • System Binaries.
+                • Not every one can use the applications under this directory.
+                • It requires Privilege.
+        ◦ /media
+            ▪ All the other partitions are like hard disks or flash memories are under this directory.
+
+        ◦ /var
+            ▪ All the system logs are stored as files in this directory, logs like the booting log if your device is booted successfully or not.
+        ◦ /tmp
+            ▪ It contains temporary files.
+            ▪ It’s were you can create a file that you won’t need it in the next power cycle.
+        ◦ /root
+            ▪ It’s the workspace for the root user.
+        ◦ /srv
+            ▪ It’s a directory made for Networking.
+            ▪ It’s like the mail box.
+      Sudo File Systems
+        ◦ /proc
+            ▪ It’s one of important directories in the root file system.
+            ▪ It’s size is 0KB.
+            ▪ We need it to know the:
+                • number of processes running on the device.
+                • Processes that consumes the CPU.
+                • Process Control Block (PCB).
+            ▪ It doesn’t consume any space because it’s not in the volatile memory (Hard Disk) but it’s located in the RAM.
+        ◦ /dev (device)
+            ▪ It represents all the devices connected to the PC.
+            ▪ The information of these devices are located also in the RAM and it doesn’t have any memory in the hard disk.
+        ◦ /sys
+            ▪ It access the devices as attributes.
+            ▪ It enables user to access hardware devices or the PC hardware resources itself.
+            ▪ It’s also a sudo directory and located in the RAM.
+	NOTE:
+		Kernel  Creates the previous directories after booting for all the processes.
+

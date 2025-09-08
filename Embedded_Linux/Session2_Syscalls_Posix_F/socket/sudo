@@ -1,0 +1,1 @@
+1 tee /sys/class/leds/input10::capslock/brightness

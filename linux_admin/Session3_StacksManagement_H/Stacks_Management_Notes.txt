@@ -1,0 +1,36 @@
+﻿Linux Kernel is Divided into Multiple Stacks (Sub system).
+    • Network.
+    • Process Kernel.
+    • File System.
+Operating System  = User Space + Kernel.
+
+Each Subsystem – Stack is associated with HW or Device Driver.
+
+Command Flow In Linux:
+    • Run command in terminal.
+    • Call the libc library which interact with Kernel using System Calls.
+    • Libc Interacts with Subsystem.
+    • The Subsystem Interacts with device drivers and hardware.
+
+
+1. File System Stack:
+Files and directories in user-space are much different from the format of it in the memory which is binary.
+    • So the First task of File system stack is changing the view from user space / storage.
+    • There are two connection points between the file system stack and each user-space and storage.
+    • Second task for file system stack is that it adds new storage to runtime.
+    • There are multiple commands to interact with file systems and also with memory directly.
+    • `lsblk` It a command that gets all storage connected to Linux machine.
+    • File System understands some protocols (Ext3, Ext4, FAT).
+    • Preparing A new Storage:
+        ◦ Create a partition `sudo fdisk /dev/sdx`.
+        ◦ Add protocol for the partition we have created `sudo mkfs.ext4 /dev/sdx`
+            ▪ Makes a protocol of ext4 for partition.
+        ◦ Mounting the File system type.
+            ▪ `mount -t filesystem_type path/to/device_file  path/to/target_directory`.
+        ◦ To umount the files
+    • At least we have one mounted file system which is Root file system.
+
+Commands:
+    • To get the size of a directory `du -h –max-depth=1 <path>`s.
+
+
