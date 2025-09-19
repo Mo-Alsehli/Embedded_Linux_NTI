@@ -28,7 +28,6 @@ int main() {
     repo.load_users();
     // Shared menu state
     MenuState state;
-
     Application app(state, &u_list);
 
     app.app_run();

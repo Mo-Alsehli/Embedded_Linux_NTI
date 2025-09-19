@@ -22,7 +22,7 @@ class User {
     std::string get_userpasswd() const;
     double get_balance() const;
     void deposit(double amount);
-    void withdraw(double amount);
+    bool withdraw(double amount);
     bool check_credentials(const User& other) const;
     bool operator==(const User& other) const;
 };

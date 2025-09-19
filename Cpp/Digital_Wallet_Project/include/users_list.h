@@ -1,16 +1,18 @@
+// users_list.h
 #pragma once
+#include <deque>  // ✅ switched from vector to deque (stable references)
+#include <functional>
 #include <optional>
 #include <string>
-#include <vector>
 
 #include "user.h"
 
 class UsersList {
-    std::vector<User> users;
+    std::deque<User> users;
     size_t max_users;
 
    public:
-    UsersList(size_t max = 100);
+    explicit UsersList(size_t max = 100);
 
     UsersList(const UsersList&) = delete;
     UsersList& operator=(const UsersList&) = delete;
@@ -19,7 +21,8 @@ class UsersList {
     ~UsersList() = default;
 
     bool add_user(const User& user);
-    std::optional<User*> search_users(const User& match) const;
-    std::vector<std::string> save_updated_users();
+    std::optional<std::reference_wrapper<User>> login_user(const std::string& username, const std::string& password);
+    std::optional<std::reference_wrapper<User>> search_user(const std::string& username);
+    std::vector<std::string> save_updated_users() const;
     size_t size() const;
 };

@@ -1,5 +1,7 @@
 #include "client.h"
 
+#include "led.h"
+
 TCPClient::TCPClient() : sock(-1) {}
 
 TCPClient::~TCPClient() {
@@ -70,6 +72,14 @@ void TCPClient::run() {
         }
 
         std::string response = receive_message();
+        if (response == "done") {
+            std::fstream file("/sys/class/leds/input4::capslock/brightness");
+            Led led(file);
+
+            led.turn_capslock_on();
+            // Echo message back to client
+            response = "CapsLock On";
+        }
         if (!response.empty()) {
             std::cout << "Server response: " << response << std::endl;
         } else {

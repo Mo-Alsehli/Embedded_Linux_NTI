@@ -1,0 +1,9 @@
+# ninja log v6
+2	348	1757934972424958451	qt-demo_autogen/timestamp	7165f082c5a0cfcd
+2	348	1757934972424958451	qt-demo_autogen/mocs_compilation.cpp	7165f082c5a0cfcd
+2	348	1757934972424958451	/home/mmagdi/workspace/Embedded_Linux_NTI/Cpp/08_QT/qt-demo/build/Desktop_Qt_6_9_2-Debug/qt-demo_autogen/timestamp	7165f082c5a0cfcd
+2	348	1757934972424958451	/home/mmagdi/workspace/Embedded_Linux_NTI/Cpp/08_QT/qt-demo/build/Desktop_Qt_6_9_2-Debug/qt-demo_autogen/mocs_compilation.cpp	7165f082c5a0cfcd
+350	2359	1757934972433279144	CMakeFiles/qt-demo.dir/mainwindow.cpp.o	788fb412c5eb88ad
+349	2943	1757934972433055746	CMakeFiles/qt-demo.dir/main.cpp.o	567d88efbd4099d5
+349	2960	1757934972431965936	CMakeFiles/qt-demo.dir/qt-demo_autogen/mocs_compilation.cpp.o	bfbafd99fae9b353
+2960	3293	1757934975042715383	qt-demo	f2e1f225e516b929

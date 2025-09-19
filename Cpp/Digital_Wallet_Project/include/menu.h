@@ -8,9 +8,16 @@
 #include "users_list.h"
 
 enum class MenuReturnState { Continue, ERROR, Exit };
-struct MenuState {
-    std::optional<User*> curr_user;
-    MenuReturnState rt_state;
+class MenuState {
+    std::optional<std::reference_wrapper<User>> curr_user;
+
+   public:
+    void login(User& u) { curr_user.emplace(u); }
+    void logout() { curr_user.reset(); }
+
+    bool is_logged_in() const { return curr_user.has_value(); }
+
+    User* get_user() { return curr_user ? &curr_user->get() : nullptr; }
 };
 
 class Menu {
@@ -76,4 +83,15 @@ class PayPillsMenu : public Menu {
    public:
     PayPillsMenu(MenuManager&);
     MenuReturnState display(MenuState& state) override;
+};
+
+class TransactionMenu : public Menu {
+   private:
+    MenuManager& m_manager;
+    UsersList& users_list;
+    std::optional<std::reference_wrapper<User>> recv_user;
+
+   public:
+    TransactionMenu(MenuManager&, UsersList&);
+    MenuReturnState display(MenuState&) override;
 };

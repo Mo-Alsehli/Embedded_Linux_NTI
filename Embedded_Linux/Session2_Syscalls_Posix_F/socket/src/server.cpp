@@ -1,5 +1,7 @@
 #include "server.h"
 
+#include "led.h"
+
 TCPServer::TCPServer(int port) : port(port), server_fd(-1) {}
 
 TCPServer::~TCPServer() {
@@ -73,9 +75,22 @@ void TCPServer::handleClient(int client_socket) {
 
         buffer[bytes_read] = '\0';
         std::cout << "Received: " << buffer << std::endl;
+        std::string response;
+        if (strcmp(buffer, "on") == 0) {
+            std::fstream file("/sys/class/leds/input4::capslock/brightness");
+            Led led(file);
 
-        // Echo message back to client
-        std::string response = "Echo: " + std::string(buffer);
+            led.turn_capslock_on();
+            // Echo message back to client
+            response = "CapsLock On";
+        } else if (strcmp(buffer, "off") == 0) {
+            std::fstream file("/sys/class/leds/input4::capslock/brightness");
+            Led led(file);
+
+            led.turn_capslock_off();
+            response = "CapsLock Off";
+        }
+
         send(client_socket, response.c_str(), response.length(), 0);
 
         // Clear buffer

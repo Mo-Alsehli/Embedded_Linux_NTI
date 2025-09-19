@@ -1,29 +1,37 @@
+// users_list.cpp
 #include "users_list.h"
 
 UsersList::UsersList(size_t max) : max_users(max) {}
 
 bool UsersList::add_user(const User& user) {
     if (users.size() >= max_users) return false;
-    users.push_back(user);
+    users.push_back(user);  // deque keeps references stable
     return true;
 }
 
-std::optional<User*> UsersList::search_users(const User& match) const {
-    for (auto u : users) {
-        if (u == match) return &u;
+std::optional<std::reference_wrapper<User>> UsersList::login_user(const std::string& username, const std::string& password) {
+    for (User& u : users) {
+        if (u.get_username() == username && u.get_userpasswd() == password) {
+            return u;  // ✅ returns reference_wrapper<User>
+        }
+    }
+    return std::nullopt;
+}
+std::optional<std::reference_wrapper<User>> UsersList::search_user(const std::string& username) {
+    for (User& u : users) {
+        if (u.get_username() == username) {
+            return u;  // ✅ returns reference_wrapper<User>
+        }
     }
     return std::nullopt;
 }
 
-std::vector<std::string> UsersList::save_updated_users() {
+std::vector<std::string> UsersList::save_updated_users() const {
     std::vector<std::string> users_db;
-    std::string user;
     users_db.push_back("username,password,balance");
-    for (User u : users) {
-        user = u.get_username() + "," + u.get_userpasswd() + "," + std::to_string(u.get_balance());
-        users_db.push_back(user);
+    for (const User& u : users) {  // ✅ no copy
+        users_db.push_back(u.get_username() + "," + u.get_userpasswd() + "," + std::to_string(u.get_balance()));
     }
-
     return users_db;
 }
 

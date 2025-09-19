@@ -16,10 +16,11 @@ bool User::check_credentials(const User& other) const { return username == other
 
 bool User::operator==(const User& other) const { return username == other.username && password == other.password; }
 
-void User::withdraw(double amount) {
+bool User::withdraw(double amount) {
     if (amount > balance) {
         printMessage("ERROR::Insufficient Balance", MsgType::ERROR);
-        return;
+        return false;
     }
     balance -= amount;
+    return true;
 }
