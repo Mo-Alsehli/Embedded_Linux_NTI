@@ -6,18 +6,25 @@ template <typename T>
 void ThreadSafeStack<T>::push_to_stack(T num) {
     std::lock_guard lock(mutex_stack);
     unsafe_stack.push(num);
+    cv.notify_all();
 }
 
 template <typename T>
 void ThreadSafeStack<T>::pop_from_stack() {
-    std::lock_guard lock(mutex_stack);
-    if (!unsafe_stack.empty()) unsafe_stack.pop();
+    // std::lock_guard lock(mutex_stack);
+    std::unique_lock l(mutex_stack);
+    // bool emp = unsafe_stack.empty();
+
+    cv.wait(l, [&]() { return !unsafe_stack.empty(); });
+    unsafe_stack.pop();
 }
 
 template <typename T>
 bool ThreadSafeStack<T>::compare_and_pop(T& desired) {
-    std::lock_guard lock(mutex_stack);
-    if (unsafe_stack.empty()) return false;
+    // std::lock_guard lock(mutex_stack);
+    std::unique_lock l(mutex_stack);
+    // bool emp = unsafe_stack.empty();
+    cv.wait(l, [&]() { return !unsafe_stack.empty(); });
     if (unsafe_stack.top() == desired) {
         unsafe_stack.pop();
         return true;

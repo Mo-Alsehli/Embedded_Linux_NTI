@@ -1,11 +1,10 @@
-// users_list.cpp
 #include "users_list.h"
 
-UsersList::UsersList(size_t max) : max_users(max) {}
+UsersList::UsersList(size_t max) : users(), max_users(max) {}
 
 bool UsersList::add_user(const User& user) {
     if (users.size() >= max_users) return false;
-    users.push_back(user);  // deque keeps references stable
+    users.push_back(user);
     return true;
 }
 
@@ -17,6 +16,7 @@ std::optional<std::reference_wrapper<User>> UsersList::login_user(const std::str
     }
     return std::nullopt;
 }
+
 std::optional<std::reference_wrapper<User>> UsersList::search_user(const std::string& username) {
     for (User& u : users) {
         if (u.get_username() == username) {
@@ -34,5 +34,10 @@ std::vector<std::string> UsersList::save_updated_users() const {
     }
     return users_db;
 }
+
+std::deque<User>::iterator UsersList::begin() { return users.begin(); }
+std::deque<User>::iterator UsersList::end() { return users.end(); }
+std::deque<User>::const_iterator UsersList::begin() const { return users.begin(); }
+std::deque<User>::const_iterator UsersList::end() const { return users.end(); }
 
 size_t UsersList::size() const { return users.size(); }

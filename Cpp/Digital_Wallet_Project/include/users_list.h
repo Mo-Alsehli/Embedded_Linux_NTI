@@ -1,9 +1,9 @@
-// users_list.h
 #pragma once
 #include <deque>
 #include <functional>
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "user.h"
 
@@ -25,4 +25,9 @@ class UsersList {
     std::optional<std::reference_wrapper<User>> search_user(const std::string& username);
     std::vector<std::string> save_updated_users() const;
     size_t size() const;
+
+    std::deque<User>::iterator begin();
+    std::deque<User>::iterator end();
+    std::deque<User>::const_iterator begin() const;
+    std::deque<User>::const_iterator end() const;
 };

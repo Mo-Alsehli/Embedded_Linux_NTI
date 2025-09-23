@@ -1,5 +1,6 @@
 #pragma once
 
+#include <condition_variable>
 #include <mutex>
 #include <stack>
 
@@ -8,6 +9,7 @@ class ThreadSafeStack {
    private:
     std::stack<T> unsafe_stack;
     std::mutex mutex_stack;
+    std::condition_variable cv;
 
    public:
     void push_to_stack(T num);

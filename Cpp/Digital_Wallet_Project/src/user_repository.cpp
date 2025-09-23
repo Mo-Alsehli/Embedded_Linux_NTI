@@ -1,6 +1,6 @@
 #include "user_repository.h"
 
-UserRepository::UserRepository(UsersList& curr_users) : users_list(curr_users) {}
+UserRepository::UserRepository() : users_list(20) {}
 
 std::vector<std::string> UserRepository::parse_line(const std::string& line) {
     std::vector<std::string> result;
@@ -46,8 +46,17 @@ void UserRepository::load_users() {
     file.close();
 }
 
+std::vector<std::string> UserRepository::save_updated_users() const {
+    std::vector<std::string> users_db;
+    users_db.push_back("username,password,balance");
+    for (auto u : users_list) {
+        users_db.push_back(u.get_username() + "," + u.get_userpasswd() + "," + std::to_string(u.get_balance()));
+    }
+    return users_db;
+}
+
 void UserRepository::update_users() {
-    std::vector<std::string> users_db = users_list.save_updated_users();
+    std::vector<std::string> users_db = this->save_updated_users();
 
     std::ofstream file(db_name);
 
@@ -57,4 +66,12 @@ void UserRepository::update_users() {
         }
         file << '\n';
     }
+}
+
+bool UserRepository::add_user(const User& user) { return users_list.add_user(user); }
+std::optional<std::reference_wrapper<User>> UserRepository::login_user(const std::string& username, const std::string& password) {
+    return users_list.login_user(username, password);
+}
+std::optional<std::reference_wrapper<User>> UserRepository::search_user(const std::string& username) {
+    return users_list.search_user(username);
 }

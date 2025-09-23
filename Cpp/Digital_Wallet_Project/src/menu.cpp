@@ -3,9 +3,7 @@
 #include <iostream>
 
 // MenuManager
-MenuManager::MenuManager(MenuState& state, UsersList* u_list) : state_ref(state), curr_users(u_list) {
-    menu_type = new WelcomeMenu(*this, *u_list);
-};
+MenuManager::MenuManager(MenuState& state) : state_ref(state) { menu_type = new WelcomeMenu(*this); };
 
 MenuManager::~MenuManager() { delete menu_type; }
 
@@ -24,7 +22,7 @@ ReturnStatus MenuManager::run_menu() {
 
 // Welcome Menu
 
-WelcomeMenu::WelcomeMenu(MenuManager& manager, UsersList& u_list) : Menu(manager), curr_list(u_list){};
+WelcomeMenu::WelcomeMenu(MenuManager& manager) : Menu(manager){};
 
 ReturnStatus WelcomeMenu::display(MenuState& state) {
     std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
@@ -40,10 +38,10 @@ ReturnStatus WelcomeMenu::display(MenuState& state) {
     std::cin >> query;
 
     if (query == "L" || query == "l") {
-        m_manager.set_menu(new LoginMenu(curr_list, m_manager));
+        m_manager.set_menu(new LoginMenu(m_manager));
         return ReturnStatus::Continue;
     } else if (query == "S" || query == "s") {
-        m_manager.set_menu(new SignUp(curr_list, m_manager));
+        m_manager.set_menu(new SignUp(m_manager));
         return ReturnStatus::Continue;
     } else if (query == "Q" || query == "q") {
         printMessage("Goodbye!", MsgType::INFO);
@@ -57,7 +55,7 @@ ReturnStatus WelcomeMenu::display(MenuState& state) {
 }
 
 // LoginMenu
-LoginMenu::LoginMenu(UsersList& u_list, MenuManager& manager) : curr_list(u_list), Menu(manager){};
+LoginMenu::LoginMenu(MenuManager& manager) : Menu(manager){};
 
 ReturnStatus LoginMenu::display(MenuState& state) {
     std::string user_name;
@@ -82,7 +80,7 @@ ReturnStatus LoginMenu::display(MenuState& state) {
         // User user;
         // user.set_username(user_name);
         // user.set_userpasswd(user_passwd);
-        auto result = curr_list.login_user(user_name, user_passwd);
+        auto result = state.user_repo.login_user(user_name, user_passwd);
         if (result) {
             state.login(result->get());
             std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
@@ -115,7 +113,7 @@ ReturnStatus LoginMenu::display(MenuState& state) {
 
 // Sign Up Menu
 
-SignUp::SignUp(UsersList& u_list, MenuManager& manager) : curr_list(u_list), Menu(manager) {}
+SignUp::SignUp(MenuManager& manager) : Menu(manager) {}
 
 ReturnStatus SignUp::display(MenuState& state) {
     std::string user_name;
@@ -135,7 +133,7 @@ ReturnStatus SignUp::display(MenuState& state) {
 
     if (user_passwd != user_confirm_passwd) {
         printMessage("ERROR::Password Didn't Match", MsgType::ERROR);
-        m_manager.set_menu(new SignUp(*m_manager.curr_users, m_manager));
+        m_manager.set_menu(new SignUp(m_manager));
         return ReturnStatus::Continue;
     }
 
@@ -147,9 +145,9 @@ ReturnStatus SignUp::display(MenuState& state) {
     new_user.set_userpasswd(user_passwd);
     new_user.deposit(init_balance);
 
-    m_manager.curr_users->add_user(new_user);
+    state.user_repo.add_user(new_user);
     printMessage("User: " + user_name + "Created Successfully", MsgType::INFO);
-    m_manager.set_menu(new LoginMenu(*m_manager.curr_users, m_manager));
+    m_manager.set_menu(new LoginMenu(m_manager));
     return ReturnStatus::Continue;
 }
 
@@ -209,7 +207,7 @@ ReturnStatus UserMenu::display(MenuState& state) {
         return ReturnStatus::Continue;
 
     } else if (query == "4") {
-        m_manager.set_menu(new TransactionMenu(m_manager, *m_manager.curr_users));
+        m_manager.set_menu(new TransactionMenu(m_manager));
         return ReturnStatus::Continue;
     } else if (query == "5") {
         m_manager.set_menu(new PayPillsMenu(m_manager));
@@ -217,7 +215,7 @@ ReturnStatus UserMenu::display(MenuState& state) {
     } else if (query == "6") {
         // Option 4: Logout
         printMessage("Logged Out", MsgType::INFO);
-        m_manager.set_menu(new WelcomeMenu(m_manager, *m_manager.curr_users));
+        m_manager.set_menu(new WelcomeMenu(m_manager));
         return ReturnStatus::Continue;
 
     } else {
@@ -270,7 +268,7 @@ ReturnStatus PayPillsMenu::display(MenuState& state) {
 }
 
 // Transaction Class
-TransactionMenu::TransactionMenu(MenuManager& manager, UsersList& curr_list) : Menu(manager), users_list(curr_list) {}
+TransactionMenu::TransactionMenu(MenuManager& manager) : Menu(manager) {}
 
 ReturnStatus TransactionMenu::display(MenuState& state) {
     // std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
@@ -296,21 +294,21 @@ ReturnStatus TransactionMenu::display(MenuState& state) {
         std::cout << "Transaction Amount => ";
         std::cin >> t_amount;
         // r_user.set_username(r_username);
-        auto result = users_list.search_user(r_username);
+        auto result = state.user_repo.search_user(r_username);
         User* logged_user = state.get_user();
 
         if (result) {
             User& recv_user = result->get();
             if (!logged_user->withdraw(t_amount)) {
                 std::cout << "Transaction Faild\n";
-                m_manager.set_menu(new TransactionMenu(m_manager, users_list));
+                m_manager.set_menu(new TransactionMenu(m_manager));
                 return ReturnStatus::Continue;
             }
             recv_user.deposit(t_amount);
             printMessage("Transaction Successful\n From " + logged_user->get_username() + " To " + r_username + "\n Amount " +
                              std::to_string(t_amount) + "$",
                          MsgType::INFO);
-            m_manager.set_menu(new TransactionMenu(m_manager, users_list));
+            m_manager.set_menu(new TransactionMenu(m_manager));
             return ReturnStatus::Continue;
         } else {
             return ReturnStatus::ERROR;
@@ -322,7 +320,7 @@ ReturnStatus TransactionMenu::display(MenuState& state) {
         return ReturnStatus::Continue;
     } else {
         std::cout << "[ERROR] Invalid Selection\n";
-        m_manager.set_menu(new TransactionMenu(m_manager, users_list));
+        m_manager.set_menu(new TransactionMenu(m_manager));
         return ReturnStatus::Continue;
     }
 

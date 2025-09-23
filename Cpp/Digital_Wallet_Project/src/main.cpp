@@ -14,17 +14,9 @@
 // #include "utilites.h"
 
 int main() {
-    UsersList u_list(20);
-
-    UserRepository repo(u_list);
-    repo.load_users();
-    // Shared menu state
-    MenuState state;
-    Application app(state, &u_list);
+    Application app;
 
     app.app_run();
-
-    repo.update_users();
 
     return 0;
 }

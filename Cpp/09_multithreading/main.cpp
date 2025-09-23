@@ -6,6 +6,7 @@
 #include <string>
 #include <thread>
 
+#include "thread_safe_queue.h"
 #include "thread_safe_stack.h"
 
 // int seconds = 0;
@@ -32,22 +33,42 @@
 // }
 
 int main() {
-    ThreadSafeStack<int> my_stack;
-    std::thread t1([&my_stack]() {
-        for (int i = 0; i < 4; i++) {
-            my_stack.push_to_stack(i);
-            std::cout << "Pushed: " << i << std::endl;
-        }
-    });
+    // ThreadSafeStack<int> my_stack;
+    // std::thread t1([&my_stack]() {
+    //     for (int i = 0; i < 4; i++) {
+    //         my_stack.push_to_stack(i);
+    //         std::cout << "Pushed: " << i << std::endl;
+    //     }
+    // });
 
-    my_stack.print_stack();
+    // // my_stack.print_stack();
 
-    std::thread t2([&my_stack]() {
-        for (int i = 0; i < 4; i++) {
-            my_stack.pop_from_stack();
-            std::cout << "Poped: " << i << std::endl;
+    // std::thread t2([&my_stack]() {
+    //     for (int i = 0; i < 4; i++) {
+    //         my_stack.pop_from_stack();
+    //         std::cout << "Poped: " << i << std::endl;
+    //     }
+    // });
+    // t1.join();
+    // t2.join();
+
+    ThreadSafeQueue<int> my_q;
+
+    std::thread t1{[&]() {
+        for (int i = 0; i < 10; i++) {
+            my_q.enqueu(i * 10);
+            std::cout << "pushed: " << i * 10 << std::endl;
+            std::chrono::milliseconds time(50);
+            std::this_thread::sleep_for(time);
         }
-    });
+    }};
+
+    std::thread t2{[&]() {
+        for (int i = 0; i < 10; i++) {
+            std::cout << "\npoped: " << my_q.dequeu() << std::endl;
+        }
+    }};
+
     t1.join();
     t2.join();
 
