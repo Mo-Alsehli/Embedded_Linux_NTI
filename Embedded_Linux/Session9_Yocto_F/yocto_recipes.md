@@ -43,13 +43,63 @@
 
 
 ## How recipes are executed by `bitbake` (The sequence of the task)
-- `do_fetch() - do_unpack()`  - *default task*
+- `do_fetch - do_unpack`  - *default task*
     - Fetchs the source code (repo) and unpack them if they are compressed.
     - Usually `bitbake` download the `zip` file then it unpack it.
     - The fetch and unpack heppens in two directories {WORKDIR, UNPACKDIR} -> they are actually two variables.  
     - `WORKDIR` this is the work environment to (fetch and execute all required tasks for the package)
     - To get the `workdir` path of a recipe we use this command `bitbake -e <package-name (e.g. python3)> | grep ^WORKDIR=` 
 
-- `do_patch()`
+- `do_patch`
     - We use this function to modify a specific functionality of a function in the source code.
     - It can modify some lines of the source code.
+
+- `do_configure` - `do_compile` - `do_install`
+    - `do_configure`: is used when there is any type of configurations or `menuconfig` needs to be applied.
+        - Takes its input from the build directory and source directory (`$S`, `$B`) and usually those variables point to the same location.
+    - `do_compile`: write in it the compilation instructions if it's with make for example.
+        - Takes its input from build and source directories.
+    - `do_install`: where exactly you want the package to be located in the rootfs.
+        - The Path of the installed is held in the `$D` (destinaiton) variable.
+        - This just strcut how the app will show in the rootfs.
+
+- `do_package`
+    - It takes the destination varaible `$D` and package it as `.deb` or `.rpm`
+
+- `do_populate-sysroot`
+    - This is optional and depend on a variable named `IMAGE_INSTALL`
+    - This to tell it to but the application in the rootfs in the structure that has been set using `do_install`.
+
+
+## Writing a recipe from scratch (adding a target dash shell for ex):
+- Create a layer and cd to it's directory to /examples and create your recipe target_*.*.bb
+- `SUMMARY`, `DESCRIPTION` are just for documenting.
+- `LICENCE` can be `MIT` or `CLOSED`.
+* **do_fetch**
+    - The `do_fetch` is implemented by setting the variable `SRC_URI`, we can do it with do_fetch(){...} but it's more complicated.
+    - `SRC_URI`="<'schema'>://url;protocol="<'protocol e.g. https or ssh'>";branch="<'branch e.g. master'>""
+        - schema can be: `git` for github, `file` for a local file, `http` something from internet.
+    - `SRCREV`="the id of the last commit"
+* **do_unpack**
+    - It's implemented by default by setting the `SRC_URI` variable.
+
+* **do_patch**
+* **do_configure**
+
+* **do_compile**
+    ```
+    do_compile(){
+        oe_runmake -C ${S}
+    }
+    ```
+
+* **do_install**
+    ```
+    do_install(){
+
+    }
+    ```
+
+
+
+* Set the IMAGE_INSTALL variable with the recipe.

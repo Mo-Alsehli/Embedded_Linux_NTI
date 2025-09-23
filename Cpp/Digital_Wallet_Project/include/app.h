@@ -10,6 +10,6 @@ class Application {
 
    public:
     Application(MenuState&, UsersList*);
-    MenuReturnState init_menu_manager();
+    // ReturnStatus init_menu_manager();
     void app_run();
 };

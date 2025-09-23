@@ -1,6 +1,6 @@
 // users_list.h
 #pragma once
-#include <deque>  // ✅ switched from vector to deque (stable references)
+#include <deque>
 #include <functional>
 #include <optional>
 #include <string>

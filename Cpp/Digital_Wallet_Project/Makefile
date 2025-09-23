@@ -4,7 +4,7 @@
 
 # Compiler settings
 CXX      = g++
-CXXFLAGS = -std=c++20 -Wall -I include -g -O0
+CXXFLAGS = -std=c++20 -Wall -I include -g -O0 -MMD -MP
 LDFLAGS  =
 
 # Directories
@@ -15,6 +15,7 @@ INCDIR   = include
 # Sources and objects
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SRCS))
+DEPS = $(OBJS:.o=.d)   # dependency files
 
 # Final executable
 TARGET = main
@@ -34,10 +35,12 @@ $(TARGET): $(OBJS)
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	
 # Compile step: .cpp -> .o
-# "| $(BUILDDIR)" makes sure the dir exists before compiling
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(BUILDDIR)
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp | $(BUILDDIR)
 	$(CXX) $< -c -o $@ $(CXXFLAGS)
+
+# Ensure build dir exists
+$(BUILDDIR):
+	mkdir -p $@
 
 # Run program
 run: $(TARGET)
@@ -46,4 +49,7 @@ run: $(TARGET)
 
 # Clean build artifacts
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(TARGET) $(DEPS)
+
+# Include dependency files if they exist
+-include $(DEPS)

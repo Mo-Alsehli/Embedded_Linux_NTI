@@ -12,3 +12,9 @@ void MainWindow::on_pushButton_clicked()
     QMessageBox::information(this, "Message", "Hello QT");
 }
 
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+}
+

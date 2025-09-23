@@ -16,14 +16,6 @@
 int main() {
     UsersList u_list(20);
 
-    // // Create a test user
-    // User u1;
-    // u1.set_username("Mohamed");
-    // u1.set_userpasswd("12345");
-    // u1.deposit(2000);
-
-    // u_list.add_user(u1);
-
     UserRepository repo(u_list);
     repo.load_users();
     // Shared menu state

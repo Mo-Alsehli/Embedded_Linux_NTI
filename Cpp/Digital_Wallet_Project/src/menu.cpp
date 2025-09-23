@@ -14,9 +14,9 @@ void MenuManager::set_menu(Menu* menu) {
     menu_type = menu;
 }
 
-MenuReturnState MenuManager::run_menu() {
-    MenuReturnState state = MenuReturnState::Continue;
-    while (state == MenuReturnState::Continue) {
+ReturnStatus MenuManager::run_menu() {
+    ReturnStatus state = ReturnStatus::Continue;
+    while (state == ReturnStatus::Continue) {
         state = menu_type->display(state_ref);
     }
     return state;
@@ -24,9 +24,9 @@ MenuReturnState MenuManager::run_menu() {
 
 // Welcome Menu
 
-WelcomeMenu::WelcomeMenu(MenuManager& manager, UsersList& u_list) : m_manager(manager), curr_list(u_list){};
+WelcomeMenu::WelcomeMenu(MenuManager& manager, UsersList& u_list) : Menu(manager), curr_list(u_list){};
 
-MenuReturnState WelcomeMenu::display(MenuState& state) {
+ReturnStatus WelcomeMenu::display(MenuState& state) {
     std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
     printBanner("Welcome To Smart Wallet");
     printMessage("Login Page", MsgType::INFO);
@@ -41,25 +41,25 @@ MenuReturnState WelcomeMenu::display(MenuState& state) {
 
     if (query == "L" || query == "l") {
         m_manager.set_menu(new LoginMenu(curr_list, m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "S" || query == "s") {
         m_manager.set_menu(new SignUp(curr_list, m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "Q" || query == "q") {
         printMessage("Goodbye!", MsgType::INFO);
 
-        return MenuReturnState::Exit;
+        return ReturnStatus::Exit;
     } else {
         printMessage("Invalid selection. Please try again.", MsgType::WARNING);
 
-        return MenuReturnState::ERROR;
+        return ReturnStatus::ERROR;
     }
 }
 
 // LoginMenu
-LoginMenu::LoginMenu(UsersList& u_list, MenuManager& manager) : curr_list(u_list), m_manager(manager){};
+LoginMenu::LoginMenu(UsersList& u_list, MenuManager& manager) : curr_list(u_list), Menu(manager){};
 
-MenuReturnState LoginMenu::display(MenuState& state) {
+ReturnStatus LoginMenu::display(MenuState& state) {
     std::string user_name;
     std::string user_passwd;
     std::string query;
@@ -90,7 +90,7 @@ MenuReturnState LoginMenu::display(MenuState& state) {
             // state.curr_user->get().withdraw(500);
             printBanner(message);
             m_manager.set_menu(new UserMenu(m_manager));
-            return MenuReturnState::Continue;
+            return ReturnStatus::Continue;
         } else {
             printMessage("Invalid username or password.", MsgType::ERROR);
             std::cout << "[R]etry or [Q]uit? ";
@@ -100,24 +100,24 @@ MenuReturnState LoginMenu::display(MenuState& state) {
             if (!choice.empty() && (choice[0] == 'q' || choice[0] == 'Q')) {
                 printMessage("Login cancelled.", MsgType::WARNING);
                 state.logout();
-                return MenuReturnState::Exit;
+                return ReturnStatus::Exit;
             }
-            return MenuReturnState::Continue;
+            return ReturnStatus::Continue;
         }
     } else if (query[0] == 'q' || query[0] == 'Q') {
         printMessage("Goodbye!", MsgType::INFO);
-        return MenuReturnState::ERROR;
+        return ReturnStatus::ERROR;
     } else {
         printMessage("Invalid selection. Please try again.", MsgType::WARNING);
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     }
 }
 
 // Sign Up Menu
 
-SignUp::SignUp(UsersList& u_list, MenuManager& manager) : curr_list(u_list), m_manager(manager) {}
+SignUp::SignUp(UsersList& u_list, MenuManager& manager) : curr_list(u_list), Menu(manager) {}
 
-MenuReturnState SignUp::display(MenuState& state) {
+ReturnStatus SignUp::display(MenuState& state) {
     std::string user_name;
     std::string user_passwd;
     std::string user_confirm_passwd;
@@ -136,7 +136,7 @@ MenuReturnState SignUp::display(MenuState& state) {
     if (user_passwd != user_confirm_passwd) {
         printMessage("ERROR::Password Didn't Match", MsgType::ERROR);
         m_manager.set_menu(new SignUp(*m_manager.curr_users, m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     }
 
     std::cout << "Enter Initial Balance: ";
@@ -150,17 +150,17 @@ MenuReturnState SignUp::display(MenuState& state) {
     m_manager.curr_users->add_user(new_user);
     printMessage("User: " + user_name + "Created Successfully", MsgType::INFO);
     m_manager.set_menu(new LoginMenu(*m_manager.curr_users, m_manager));
-    return MenuReturnState::Continue;
+    return ReturnStatus::Continue;
 }
 
 // User Menu.
-UserMenu::UserMenu(MenuManager& manager) : m_manager(manager){};
+UserMenu::UserMenu(MenuManager& manager) : Menu(manager){};
 
-MenuReturnState UserMenu::display(MenuState& state) {
+ReturnStatus UserMenu::display(MenuState& state) {
     // Ensure we have a valid logged-in user
     if (!state.is_logged_in()) {
         printMessage("No user is currently logged in.", MsgType::ERROR);
-        return MenuReturnState::ERROR;
+        return ReturnStatus::ERROR;
     }
 
     // Get reference to current user from shared MenuState
@@ -182,7 +182,7 @@ MenuReturnState UserMenu::display(MenuState& state) {
         // Option 1: View balance
         float balance = user->get_balance();
         printMessage("Your Balance: " + std::to_string(balance), MsgType::INFO);
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "2") {
         // Option 2: Withdraw
         double value;
@@ -193,7 +193,7 @@ MenuReturnState UserMenu::display(MenuState& state) {
         } else {
             printMessage("Invalid Value", MsgType::ERROR);
         }
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
 
     } else if (query == "3") {
         // Option 3: Deposit
@@ -206,30 +206,30 @@ MenuReturnState UserMenu::display(MenuState& state) {
         } else {
             printMessage("Invalid Value", MsgType::ERROR);
         }
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
 
     } else if (query == "4") {
         m_manager.set_menu(new TransactionMenu(m_manager, *m_manager.curr_users));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "5") {
         m_manager.set_menu(new PayPillsMenu(m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "6") {
         // Option 4: Logout
         printMessage("Logged Out", MsgType::INFO);
         m_manager.set_menu(new WelcomeMenu(m_manager, *m_manager.curr_users));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
 
     } else {
         // Catch-all for invalid input
         printMessage("Invalid selection", MsgType::WARNING);
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     }
 }
 
-PayPillsMenu::PayPillsMenu(MenuManager& manager) : m_manager(manager) {}
+PayPillsMenu::PayPillsMenu(MenuManager& manager) : Menu(manager) {}
 
-MenuReturnState PayPillsMenu::display(MenuState& state) {
+ReturnStatus PayPillsMenu::display(MenuState& state) {
     std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
 
     printMessage("Pay Your Pills Here ", MsgType::INFO);
@@ -256,23 +256,23 @@ MenuReturnState PayPillsMenu::display(MenuState& state) {
         user->withdraw(amount);
         std::cout << number << "Recharged with amount " << amount << "Succesfully\n";
 
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else if (query == "4") {
         m_manager.set_menu(new UserMenu(m_manager));
 
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else {
         printMessage("Invalid Selection", MsgType::WARNING);
         m_manager.set_menu(new PayPillsMenu(m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     }
-    return MenuReturnState::Exit;
+    return ReturnStatus::Exit;
 }
 
 // Transaction Class
-TransactionMenu::TransactionMenu(MenuManager& manager, UsersList& curr_list) : m_manager(manager), users_list(curr_list) {}
+TransactionMenu::TransactionMenu(MenuManager& manager, UsersList& curr_list) : Menu(manager), users_list(curr_list) {}
 
-MenuReturnState TransactionMenu::display(MenuState& state) {
+ReturnStatus TransactionMenu::display(MenuState& state) {
     // std::cout << "\033[2J\033[1;1H";  // This is to clear the screen
 
     printMessage("Transaction Service", MsgType::INFO);
@@ -304,27 +304,27 @@ MenuReturnState TransactionMenu::display(MenuState& state) {
             if (!logged_user->withdraw(t_amount)) {
                 std::cout << "Transaction Faild\n";
                 m_manager.set_menu(new TransactionMenu(m_manager, users_list));
-                return MenuReturnState::Continue;
+                return ReturnStatus::Continue;
             }
             recv_user.deposit(t_amount);
             printMessage("Transaction Successful\n From " + logged_user->get_username() + " To " + r_username + "\n Amount " +
                              std::to_string(t_amount) + "$",
                          MsgType::INFO);
             m_manager.set_menu(new TransactionMenu(m_manager, users_list));
-            return MenuReturnState::Continue;
+            return ReturnStatus::Continue;
         } else {
-            return MenuReturnState::ERROR;
+            return ReturnStatus::ERROR;
         }
     } else if (query == "2") {
-        return MenuReturnState::Exit;
+        return ReturnStatus::Exit;
     } else if (query == "q") {
         m_manager.set_menu(new UserMenu(m_manager));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     } else {
         std::cout << "[ERROR] Invalid Selection\n";
         m_manager.set_menu(new TransactionMenu(m_manager, users_list));
-        return MenuReturnState::Continue;
+        return ReturnStatus::Continue;
     }
 
-    return MenuReturnState::ERROR;  // shouldn't reach here.
+    return ReturnStatus::ERROR;  // shouldn't reach here.
 }

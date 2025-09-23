@@ -12,7 +12,7 @@ bool UsersList::add_user(const User& user) {
 std::optional<std::reference_wrapper<User>> UsersList::login_user(const std::string& username, const std::string& password) {
     for (User& u : users) {
         if (u.get_username() == username && u.get_userpasswd() == password) {
-            return u;  // ✅ returns reference_wrapper<User>
+            return u;
         }
     }
     return std::nullopt;
@@ -20,7 +20,7 @@ std::optional<std::reference_wrapper<User>> UsersList::login_user(const std::str
 std::optional<std::reference_wrapper<User>> UsersList::search_user(const std::string& username) {
     for (User& u : users) {
         if (u.get_username() == username) {
-            return u;  // ✅ returns reference_wrapper<User>
+            return u;
         }
     }
     return std::nullopt;
@@ -29,7 +29,7 @@ std::optional<std::reference_wrapper<User>> UsersList::search_user(const std::st
 std::vector<std::string> UsersList::save_updated_users() const {
     std::vector<std::string> users_db;
     users_db.push_back("username,password,balance");
-    for (const User& u : users) {  // ✅ no copy
+    for (const User& u : users) {
         users_db.push_back(u.get_username() + "," + u.get_userpasswd() + "," + std::to_string(u.get_balance()));
     }
     return users_db;
