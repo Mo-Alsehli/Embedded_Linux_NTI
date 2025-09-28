@@ -176,7 +176,7 @@ bitbake core-image-minimal
 or for a GUI image:
 
 ```bash
-bitbake core-image-sato
+bitbake core-image-weston
 ```
 
 The output image will be generated in:

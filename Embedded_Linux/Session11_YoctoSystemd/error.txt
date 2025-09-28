@@ -1,0 +1,166 @@
+ERROR: libled-0.1-r0 do_install: ExecutionError('/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/libled/0.1-r0/temp/run.do_install.1899205', 134, None, None)
+ERROR: Logfile of failure stored in: /home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/libled/0.1-r0/temp/log.do_install.1899205
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are ['/home/mmagdi/yocto/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot', '/home/mmagdi/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot', '/home/mmagdi/yocto/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot', '/home/mmagdi/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', 'virtual:native:/home/mmagdi/yocto/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/mmagdi/yocto/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot']
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: ['glibc', 'gcc-cross-aarch64', 'gcc-runtime', 'quilt-native', 'patch-native', 'pseudo-native', 'linux-libc-headers', 'libgcc', 'texinfo-dummy-native', 'gmp-native', 'libmpc-native', 'flex-native', 'zlib-native', 'zstd-native', 'gnu-config-native', 'mpfr-native', 'binutils-cross-aarch64', 'libtool-native', 'xz-native', 'attr-native', 'gettext-minimal-native', 'm4-native']
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| abort()ing pseudo client by server request. See https://wiki.yoctoproject.org/wiki/Pseudo_Abort for more details on this.
+| Check logfile: /home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/libled/0.1-r0/pseudo//pseudo.log
+| Aborted (core dumped)
+| WARNING: exit code 134 from a shell command.
+ERROR: Task (/home/mmagdi/yocto/layers/meta-gpio-led/recipes-libled/libled/libled_0.1.bb:do_install) failed with exit code '1' 
+Pseudo log:
+path mismatch [3 links]: ino 17217702 db '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/libled/0.1-r0/package/usr/src/debug/libled/0.1-r0/led.h' req '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/libled/0.1-r0/led.h'.
+Setup complete, sending SIGUSR1 to pid 1899206.
+
+ERROR: tigervnc-1.11.0-r0 do_compile: oe_runmake failed
+ERROR: tigervnc-1.11.0-r0 do_compile: ExecutionError('/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/temp/run.do_compile.1899218', 1, None, None)
+ERROR: Logfile of failure stored in: /home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/temp/log.do_compile.1899218
+Log data follows:
+| DEBUG: Executing python function autotools_aclocals
+| DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64', 'common-linux', 'common-glibc', 'aarch64-linux', 'common']
+| DEBUG: Python function autotools_aclocals finished
+| DEBUG: Executing shell function do_compile
+| NOTE: VERBOSE=1 cmake --build /home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git --target all --
+| ninja: no work to do.
+| NOTE: make -j 8
+| Making all in doc
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc'
+| Making all in dtrace
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc/dtrace'
+| make[2]: Nothing to be done for 'all'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc/dtrace'
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc'
+| make[2]: Nothing to be done for 'all-am'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc'
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/doc'
+| Making all in man
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/man'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/man'
+| Making all in include
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/include'
+| make  all-am
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/include'
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/include'
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/include'
+| Making all in dix
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dix'
+| make  all-am
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dix'
+| make[2]: Nothing to be done for 'all-am'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dix'
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dix'
+| Making all in fb
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/fb'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/fb'
+| Making all in mi
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/mi'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/mi'
+| Making all in Xext
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/Xext'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/Xext'
+| Making all in miext
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext'
+| Making all in sync
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/sync'
+| make[2]: Nothing to be done for 'all'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/sync'
+| Making all in damage
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/damage'
+| make[2]: Nothing to be done for 'all'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/damage'
+| Making all in shadow
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/shadow'
+| make[2]: Nothing to be done for 'all'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/shadow'
+| Making all in rootless
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/rootless'
+| make[2]: Nothing to be done for 'all'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext/rootless'
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext'
+| make[2]: Nothing to be done for 'all-am'.
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext'
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/miext'
+| Making all in os
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/os'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/os'
+| Making all in randr
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/randr'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/randr'
+| Making all in render
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/render'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/render'
+| Making all in Xi
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/Xi'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/Xi'
+| Making all in xkb
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/xkb'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/xkb'
+| Making all in dbe
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dbe'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/dbe'
+| Making all in record
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/record'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/record'
+| Making all in xfixes
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/xfixes'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/xfixes'
+| Making all in damageext
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/damageext'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/damageext'
+| Making all in composite
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/composite'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/composite'
+| Making all in present
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/present'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/present'
+| Making all in exa
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/exa'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/exa'
+| Making all in config
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/config'
+| make[1]: Nothing to be done for 'all'.
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/config'
+| Making all in hw
+| make[1]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/hw'
+| Making all in vnc
+| make[2]: Entering directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/hw/vnc'
+| /bin/bash ../../libtool  --tag=CXX   --mode=link aarch64-rpi3b-linux-g++  -mcpu=cortex-a53 -march=armv8-a+crc -mbranch-protection=standard --sysroot=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot  -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot-native=  -fvisibility-inlines-hidden -export-dynamic -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot-native=  -o Xvnc Xvnc-xvnc.o Xvnc-stubs.o Xvnc-miinitext.o Xvnc-fbcmap_mi.o Xvnc-buildtime.o ../../fb/libfb.la ../../xfixes/libxfixes.la ../../Xext/libXext.la  ../../dbe/libdbe.la ../../record/librecord.la  ../../randr/librandr.la ../../render/librender.la ../../damageext/libdamageext.la  ../../present/libpresent.la ../../miext/sync/libsync.la ../../miext/damage/libdamage.la ../../miext/shadow/libshadow.la ../../Xi/libXi.la ../../xkb/libxkb.la ../../xkb/libxkbstubs.la ../../composite/libcomposite.la ../../dix/libmain.la libvnccommon.la ../../../../common/network/libnetwork.la ../../../../common/rfb/librfb.la ../../../../common/rdr/librdr.la ../../../../common/os/libos.la ../../../../unix/common/libunixcommon.la ../../dix/libdix.la ../../mi/libmi.la ../../os/libos.la -lpixman-1 -lXfont2 -lXau -lXdmcp   -lm    -lX11 -lm
+| libtool: link: aarch64-rpi3b-linux-g++ -mcpu=cortex-a53 -march=armv8-a+crc -mbranch-protection=standard --sysroot=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0 -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0 -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot= -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot-native= -fvisibility-inlines-hidden -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0 -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0=/usr/src/debug/tigervnc/1.11.0-r0 -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot= -fdebug-prefix-map=/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot-native= -o Xvnc Xvnc-xvnc.o Xvnc-stubs.o Xvnc-miinitext.o Xvnc-fbcmap_mi.o Xvnc-buildtime.o -Wl,--export-dynamic  ../../fb/.libs/libfb.a ../../xfixes/.libs/libxfixes.a ../../Xext/.libs/libXext.a ../../dbe/.libs/libdbe.a ../../record/.libs/librecord.a ../../randr/.libs/librandr.a ../../render/.libs/librender.a ../../damageext/.libs/libdamageext.a ../../present/.libs/libpresent.a ../../miext/sync/.libs/libsync.a ../../miext/damage/.libs/libdamage.a ../../miext/shadow/.libs/libshadow.a ../../Xi/.libs/libXi.a ../../xkb/.libs/libxkb.a ../../xkb/.libs/libxkbstubs.a ../../composite/.libs/libcomposite.a ../../dix/.libs/libmain.a ./.libs/libvnccommon.a ../../../../common/network/.libs/libnetwork.a ../../../../common/rfb/.libs/librfb.a -L/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot/usr/lib -L/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot/lib -ljpeg -lpam ../../../../common/rdr/.libs/librdr.a -lz -lgnutls ../../../../common/os/.libs/libos.a -lpthread ../../../../unix/common/.libs/libunixcommon.a ../../dix/.libs/libdix.a ../../mi/.libs/libmi.a ../../os/.libs/libos.a -lnettle -lpixman-1 -lXfont2 -lXau -lXdmcp -lX11 -lm
+| /home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/recipe-sysroot-native/usr/bin/aarch64-rpi3b-linux/../../libexec/aarch64-rpi3b-linux/gcc/aarch64-rpi3b-linux/11.5.0/ld: ../../os/.libs/libos.a(xstrans.o): in function `receive_listening_fds':
+| /usr/include/X11/Xtrans/Xtrans.c:1049: undefined reference to `sd_listen_fds'
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [Makefile:848: Xvnc] Error 1
+| make[2]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/hw/vnc'
+| make[1]: Leaving directory '/home/mmagdi/yocto/build-rpi3b/tmp-glibc/work/cortexa53-rpi3b-linux/tigervnc/1.11.0-r0/git/unix/xserver/hw'
+| make[1]: *** [Makefile:627: all-recursive] Error 1
+| make: *** [Makefile:828: all-recursive] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+ERROR: Task (/home/mmagdi/yocto/layers/meta-openembedded/meta-oe/recipes-graphics/tigervnc/tigervnc_1.11.0.bb:do_compile) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 5805 tasks of which 5801 didn't need to be rerun and 2 failed.
+
+Summary: 2 tasks failed:
+  /home/mmagdi/yocto/layers/meta-gpio-led/recipes-libled/libled/libled_0.1.bb:do_install
+  /home/mmagdi/yocto/layers/meta-openembedded/meta-oe/recipes-graphics/tigervnc/tigervnc_1.11.0.bb:do_compile
+Summary: There were 3 ERROR messages, returning a non-zero exit code.
+
