@@ -1,0 +1,27 @@
+# ninja log v6
+4	12	1759231595999670758	http_server_autogen/timestamp	47d084759a15a166
+4	12	1759231595999670758	http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+4	12	1759231595999670758	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/timestamp	47d084759a15a166
+4	12	1759231595999670758	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+23	35	1759231356257518340	CMakeFiles/http_server.dir/http_server_autogen/mocs_compilation.cpp.o	1b5e2e4daccd89e1
+12	2656	1759231596007670987	CMakeFiles/http_server.dir/main.cpp.o	d2ce06f2dbef5ea3
+2656	2852	1759231598651746553	http_server	a2400aba52701957
+3	19	1759231967284156972	http_server_autogen/timestamp	47d084759a15a166
+3	19	1759231967284156972	http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+3	19	1759231967284156972	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/timestamp	47d084759a15a166
+3	19	1759231967284156972	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+20	30	1759231967301765243	CMakeFiles/http_server.dir/http_server_autogen/mocs_compilation.cpp.o	bb6920347929af0
+20	4449	1759231967302187141	CMakeFiles/http_server.dir/main.cpp.o	d8fe65b696496d07
+4449	4622	1759231971730281347	http_server	571288e721127bf2
+5	15	1759232463585515412	http_server_autogen/timestamp	47d084759a15a166
+5	15	1759232463585515412	http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+5	15	1759232463585515412	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/timestamp	47d084759a15a166
+5	15	1759232463585515412	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+15	4957	1759232463595841744	CMakeFiles/http_server.dir/main.cpp.o	d8fe65b696496d07
+4957	5143	1759232468537867283	http_server	571288e721127bf2
+3	11	1759232915730628135	http_server_autogen/timestamp	47d084759a15a166
+3	11	1759232915730628135	http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+3	11	1759232915730628135	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/timestamp	47d084759a15a166
+3	11	1759232915730628135	/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server_autogen/mocs_compilation.cpp	47d084759a15a166
+11	4607	1759232915738618349	CMakeFiles/http_server.dir/main.cpp.o	d8fe65b696496d07
+4607	4788	1759232920334356710	http_server	571288e721127bf2

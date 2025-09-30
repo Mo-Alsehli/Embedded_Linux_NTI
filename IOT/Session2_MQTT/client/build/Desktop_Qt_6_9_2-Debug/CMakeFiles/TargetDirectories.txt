@@ -1,0 +1,9 @@
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/client.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/edit_cache.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/list_install_components.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/local.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/strip.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/client_autogen_timestamp_deps.dir
+/home/mmagdi/client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/client_autogen.dir

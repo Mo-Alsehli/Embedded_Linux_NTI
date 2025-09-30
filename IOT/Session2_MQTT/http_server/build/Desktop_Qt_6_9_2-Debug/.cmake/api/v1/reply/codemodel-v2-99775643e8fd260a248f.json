@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-5e92a8d1a2d5f366bf5d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "http_server",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "http_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-http_server-Debug-da3f3c615859f24ed58f.json",
+					"name" : "http_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "http_server_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-http_server_autogen-Debug-c2dc19dee77a2bac3f92.json",
+					"name" : "http_server_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "http_server_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-http_server_autogen_timestamp_deps-Debug-f4444d2a9e4d7fba0c29.json",
+					"name" : "http_server_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug",
+		"source" : "/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

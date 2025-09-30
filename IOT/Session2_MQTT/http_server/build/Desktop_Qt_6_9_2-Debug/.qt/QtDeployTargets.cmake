@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_http_server_FILE /home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/http_server)
+set(__QT_DEPLOY_TARGET_http_server_TYPE EXECUTABLE)
