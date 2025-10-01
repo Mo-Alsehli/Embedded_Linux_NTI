@@ -1,0 +1,9 @@
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/http_server.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/edit_cache.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/list_install_components.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/local.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/strip.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/http_server_autogen_timestamp_deps.dir
+/home/mmagdi/workspace/Embedded_Linux_NTI/IOT/Session2_MQTT/http_server/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/http_server_autogen.dir
