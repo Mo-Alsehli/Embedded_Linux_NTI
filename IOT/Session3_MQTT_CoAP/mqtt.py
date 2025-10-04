@@ -1,19 +1,25 @@
 import paho.mqtt.client as mqtt
 import time
+import psutil # for ready laptop battery level.
 
 
 def connection(client, userdata, flags, rc):
     if rc == 0:
         print("Connection established successfully to broker")
-        client.subscribe("temp")
-        print("subscripbed to temp topic...")
+        client.subscribe("command")
+        print("subscripbed to command topic...")
     else:
         print("Connection Failed !!!")
 
 
 def message_arrived(client, userdata, msg):
-    print(client._client_id.decode(), "Recieved: \n", "data: ", msg.payload.decode(), "On Topic: ", msg.topic)
-
+    payload = msg.payload.decode()
+    if(payload == "on"):
+        print("Recieved <on>")
+    elif(payload == "off"):
+        print("Recieved <off>")
+    else:
+        print("unknown message")
 
 broker_ip = "127.0.0.1"
 broker_port = 1883
@@ -30,4 +36,12 @@ client.loop_start()
 
 
 while True:
-    pass
+    battery = psutil.sensors_battery()
+    if battery:
+        percent = int(battery.percent)
+        client.publish("battery", percent)
+        print("Published to topic battery: ", percent)
+        time.sleep(5)
+    else:
+        print("Failed to publish on battery topic")
+

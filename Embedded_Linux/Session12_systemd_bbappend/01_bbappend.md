@@ -43,13 +43,13 @@ Instead, `.bbappend` is used to "hook into" an existing recipe and add or overri
   ```bash
   bitbake -e <recipe-name> | grep ^PV=
   ```
-* To make it apply regardless of version, you can use a **wildcard**:
+* To make it apply regardless of version , you can use a **wildcard**:
 
   ```
   busybox_%.bbappend
   ```
 
-  The `%` symbol matches any version of the recipe.
+  The `%` symbol matches The latest version of the recipe.
 
 ---
 
@@ -137,6 +137,7 @@ Suppose a recipe installs a service script for **sysvinit**, but you want to ena
 ✅ Name `.bbappend` to match the original recipe (with version or `%`).
 ✅ Add custom files via `SRC_URI`.
 ✅ Extend/modify tasks with `:append`, `:prepend`, `:remove`.
+**Very Important If you will add new files to the extended recipe**
 ✅ Use `FILESEXTRAPATHS` so BitBake can find your new files.
 ✅ Test by rebuilding:
 

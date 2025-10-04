@@ -3,7 +3,7 @@
 * **We need to change our splash screen for custom applications**
 
 
-## `SPLASH_IMAGE`
+## `SPLASH_IMAGE` Variable
 - We will modify this variable in an another append for the psplash-git.bb
 - we create a layer `meta-layer` and create a recipe `recipe-core`.
     - create `psplash-git.bbappend`

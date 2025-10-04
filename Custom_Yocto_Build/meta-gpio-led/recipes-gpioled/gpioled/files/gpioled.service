@@ -1,0 +1,16 @@
+[Unit]
+Description = A simple Service to start gpioled app automatically
+After=multi-user.target
+
+After=sysinit.target
+Wants=sysinit.target
+
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/start-gpioled.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
