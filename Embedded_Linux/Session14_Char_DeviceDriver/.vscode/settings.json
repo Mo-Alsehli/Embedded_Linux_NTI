@@ -1,6 +1,12 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "fs.h": "c"
+        "fs.h": "c",
+        "io.h": "c",
+        "module.h": "c",
+        "cdev.h": "c",
+        "uaccess.h": "c",
+        "device.h": "c",
+        "class.h": "c"
     }
 }
