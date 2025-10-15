@@ -1,0 +1,27 @@
+[Unit]
+Description=Qt6 Dashboard (SupraAAAA Dashboard)
+After=weston.service
+Requires=weston.service
+
+[Service]
+Type=simple
+User=weston
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=QT_QPA_PLATFORM=wayland
+Environment=LANG=C.UTF-8
+Environment=QT_DEBUG_PLUGINS=1
+
+# Wait for Wayland socket before launching
+ExecStartPre=/bin/sh -c 'until [ -S /run/user/1000/wayland-1 ]; do sleep 1; done'
+# Stop splash before launching
+##ExecStartPre=-/usr/bin/psplash-write QUIT
+
+# Launch the app
+ExecStart=/usr/bin/appdashboardhw
+
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical.target
